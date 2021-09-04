@@ -1,0 +1,22 @@
+<div class="row" id="topicMain">
+  <div class="col-md-6">
+    <h5>WE LISTEN TO YOU</h5>
+  </div>
+  <div class="col-md-6">
+    <p id="seeAll">See All</p>
+  </div>
+
+  <!--card-->
+  <div class="col-md-4" *ngFor="let item of products;index as i">
+    <div class="card">
+      <div class="card-body">
+        <div class="topicImage">
+          <img src="{{baseUrl}}/{{item['image']}}" alt="">
+        </div>
+        <p class="title">{{item['name']}}</p>
+        <button class="btn voteNow">Sumit</button>
+      </div>
+    </div>
+  </div>
+
+</div>

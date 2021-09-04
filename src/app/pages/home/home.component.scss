@@ -1,0 +1,33 @@
+#form {
+  background-color: #ffffff;
+  height: 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2px solid #e6e6e6;
+  border-radius: 42px;
+  margin: 5px auto;
+
+  input {
+    all: unset;
+    width: 90%;
+    padding: 6px 13px;
+  }
+
+
+  #searchButton {
+    width: 39px !important;
+    height: 35px;
+    border-radius: 40px;
+    border: none;
+    margin: 0px 2px;
+    color: white;
+    background: linear-gradient(to bottom left, #f7b733 0%, #fc4a1a 100%);
+  }
+}
+
+.footer {
+  width: 100%;
+  margin: 0px;
+  padding: 0px !important;
+}

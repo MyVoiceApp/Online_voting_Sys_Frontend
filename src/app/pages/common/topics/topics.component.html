@@ -1,0 +1,23 @@
+<div class="row" id="topicMain">
+  <div class="col-md-6">
+    <h5>HOT TOPICS</h5>
+  </div>
+  <div class="col-md-6">
+    <p id="seeAll">See All</p>
+  </div>
+
+  <!--card-->
+  <div class="col-md-4" *ngFor="let item of topics;index as i">
+    <div class="card">
+      <div class="card-body">
+        <div class="topicImage">
+          <img src="{{baseUrl}}/{{item['image']}}" alt="">
+        </div>
+        <p class="title">{{item['name']}}</p>
+        <p class="votes">356,89987 have voted</p>
+        <button class="btn voteNow">Vote Now</button>
+      </div>
+    </div>
+  </div>
+
+</div>
