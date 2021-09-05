@@ -32,8 +32,14 @@
           <a class="nav-link" routerLink="/contribution" routerLinkActive="onLinkactive">Contribution</a>
         </li>
 
-        <li id="userAction">
-          <img src="../../../../assets//images/avatars/2.png" alt="">
+        <li id="userAction" *ngIf="user != null">
+          <img src="{{baseUrl}}/{{user['image']}}" alt="">
+        </li>
+        <li id="userAction" *ngIf="user != null">
+          <a class="nav-link logout" (click)="logout()">Logout</a>
+        </li>
+        <li id="userAction" *ngIf="user == null">
+          <a class="nav-link" routerLink="/login">Login</a>
         </li>
 
       </ul>

@@ -1,4 +1,4 @@
-<div class="row" id="topicMain">
+<div class="row" id="topicMain" *ngIf="!loader">
   <div class="col-md-6">
     <h5>HOT TOPICS</h5>
   </div>
@@ -8,7 +8,7 @@
 
   <!--card-->
   <div class="col-md-4" *ngFor="let item of topics;index as i">
-    <div class="card">
+    <div class="card" (click)="singleTopic(item)">
       <div class="card-body">
         <div class="topicImage">
           <img src="{{baseUrl}}/{{item['image']}}" alt="">
@@ -20,4 +20,47 @@
     </div>
   </div>
 
+</div>
+
+<div class="row" *ngIf="loader">
+  <div class="col-md-12 text-center">
+    <img src="../../../../assets/loaders/loader-01.svg" alt="">
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button hidden data-toggle="modal" id="openModel" data-target="#exampleModal">
+</button>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{single_Topic?.name}} <span>(Selected Topic)</span> </h5>
+      </div>
+
+      <div class="modal-body">
+        <h4 class="text-center">Choose Product/Option</h4>
+        <div class="row" *ngFor="let item of products;">
+          <div class="col-md-2">
+            <div class="productImage">
+              <img src="{{baseUrl}}/{{item['image']}}" alt="" (click)="goforVote(item['_id'])">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h6 (click)="goforVote(item['_id'])">{{item['name']}}</h6>
+            <span id="voted">Voted : 65,765,650</span>
+            <p>{{item['description']}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

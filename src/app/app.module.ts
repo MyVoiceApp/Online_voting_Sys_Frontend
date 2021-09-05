@@ -32,6 +32,10 @@ import { TopicsComponent } from './pages/common/topics/topics.component';
 import { ProductsComponent } from './pages/common/products/products.component';
 import { CategoriesComponent } from './pages/common/categories/categories.component';
 import { CategoryService } from './services/category.service';
+import { ContactUsService } from './services/contact-us.service';
+import { ToastrModule } from 'ngx-toastr';
+import { SurveyFormComponent } from './pages/survey-form/survey-form.component';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -50,14 +54,16 @@ import { CategoryService } from './services/category.service';
     SliderComponent,
     TopicsComponent,
     ProductsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    SurveyFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     LoginGuard,
@@ -67,6 +73,8 @@ import { CategoryService } from './services/category.service';
     ProductService,
     SliderService,
     CategoryService,
+    ContactUsService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

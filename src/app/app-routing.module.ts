@@ -11,6 +11,7 @@ import { SurveyComponent } from './pages/survey/survey.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { CooperationComponent } from './pages/cooperation/cooperation.component';
 import { ContributionComponent } from './pages/contribution/contribution.component';
+import { SurveyFormComponent } from './pages/survey-form/survey-form.component';
 
 const routes: Routes = [
   {
@@ -21,12 +22,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
   },
   {
     path: 'registration',
     component: RegistrationComponent,
-    // canActivate: [LoginGuard]
+    canActivate: [LoginGuard]
   },
   {
     path: 'home',
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'contribution',
     component: ContributionComponent,
+  },
+  {
+    path: 'survey/survey-form',
+    component: SurveyFormComponent,
   },
 ];
 

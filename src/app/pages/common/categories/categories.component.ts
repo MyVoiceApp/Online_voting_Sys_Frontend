@@ -13,14 +13,17 @@ export class CategoriesComponent implements OnInit {
 
   categories = [];
   baseUrl = environment.baseurl;
+  loader = false;
 
   constructor(
     private categorySrv: CategoryService,
   ) { }
 
   ngOnInit(): void {
+    this.loader = true;
     this.categorySrv.getAll().subscribe((resp: any) => {
       this.categories = resp.data;
+      this.loader = false;
     })
   }
 

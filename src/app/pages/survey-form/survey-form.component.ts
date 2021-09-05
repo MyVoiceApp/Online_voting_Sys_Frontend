@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { ContactUsService } from '../../services/contact-us.service';
+import { ContactUsService } from 'src/app/services/contact-us.service';
 
 @Component({
-  selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  selector: 'app-survey-form',
+  templateUrl: './survey-form.component.html',
+  styleUrls: ['./survey-form.component.scss']
 })
-export class ContactUsComponent implements OnInit {
+export class SurveyFormComponent implements OnInit {
 
   formObj = {
     email: '',

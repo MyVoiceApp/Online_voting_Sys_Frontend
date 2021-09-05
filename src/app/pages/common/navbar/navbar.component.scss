@@ -1,6 +1,7 @@
 .navbar {
   border-bottom: 2px solid #f2f2f2;
   box-shadow: 0 3px 10px #f0f0f0;
+  background: white;
 
   .navbar-nav {
 
@@ -18,10 +19,11 @@
 
       img {
         width: 43px !important;
-        margin: 0px 40px;
+        margin: 0px 70px;
         border-radius: 40px;
         object-fit: cover;
         border: 1px solid #f8f9fa;
+        height: 43px;
       }
     }
 
@@ -44,4 +46,9 @@
   .container {
     position: relative;
   }
+}
+
+.logout {
+  cursor: pointer;
+  color: black;
 }

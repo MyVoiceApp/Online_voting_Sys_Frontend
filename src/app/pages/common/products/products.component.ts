@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
 
   products = [];
   baseUrl = environment.baseurl;
+  loader = false;
 
   constructor(
     private topicSrv: TopicsService,
@@ -19,8 +20,10 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loader = true;
     this.prodSrv.getAll().subscribe((resp: any) => {
       this.products = resp.data;
+      this.loader = false;
     })
   }
 
