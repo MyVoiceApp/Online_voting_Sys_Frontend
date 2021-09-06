@@ -31,7 +31,7 @@ h6 {
 
 .contactus-one .contact-info p i {
   margin-right: 15px;
-  color: #ee2b63;
+  color: #512d6d;
 }
 
 .map iframe {
@@ -54,4 +54,11 @@ h6 {
 
 .contactus-one .dart-headingstyle-one .dart-heading:after {
   left: 15px;
+}
+
+
+.btn {
+  margin: 20px 0px;
+  float: right !important;
+  background: linear-gradient(to bottom left, #512d6d 0%, #512d6d 100%) !important;
 }

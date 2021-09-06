@@ -72,7 +72,12 @@ export class TopicsComponent implements OnInit {
       })
 
     } else {
-      this._router.navigate(['/survey/survey-form'])
+      var topicObj = {
+        topicId: this.single_Topic._id,
+        productId: id,
+      }
+      localStorage.setItem('topic', JSON.stringify(topicObj));
+      this._router.navigate(['/survey-form'])
       document.getElementById('closeModal')?.click()
     }
   }

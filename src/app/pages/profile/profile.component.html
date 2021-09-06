@@ -1,0 +1,119 @@
+<app-navbar></app-navbar>
+<div class="container emp-profile">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="profile-img">
+              <img *ngIf="!singleUser?.image || singleUser?.image == ''" src="https://i.pinimg.com/originals/e5/32/72/e53272e7c1c018fa1434fdff47e212a9.jpg" alt="" />
+              <img *ngIf="singleUser?.image && singleUser?.image != ''" src="{{baseUrl}}/{{singleUser?.image }}" alt="" />
+              <div class="file btn btn-lg btn-primary">
+                Change Photo
+                <input type="file" (change)="updateProfile($event)" name="file" />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="profile-head">
+              <h5>
+                Kshiti Ghelani
+              </h5>
+              <p id="designation">
+                Web Developer and Designer
+              </p>
+
+
+              <div id="share">
+                <span id="shareLable">
+                  Share Website
+                </span>
+                <img src="../../../assets/images/social-media/facebook.png" (click)="socialShare('fb', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/twitter.png" (click)="socialShare('tw', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/pr.PNG" (click)="socialShare('pn', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/linkedin.png" (click)="socialShare('in', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/tumblr.png" (click)="socialShare('tr', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/digg.png" (click)="socialShare('dg', '')"
+                  id="socialMedia_Icon" alt="">
+                <img src="../../../assets/images/social-media/reddit.png" (click)="socialShare('rd', '')"
+                  id="socialMedia_Icon" alt="">
+
+              </div>
+
+
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                    aria-controls="home" aria-selected="true">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                    aria-controls="profile" aria-selected="false">Biography</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <input type="submit" routerLink="/profile-update" class="profile-edit-btn" name="btnAddMore"
+              value="Edit Profile" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"> </div>
+          <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Name</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="ans">{{singleUser?.name}}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Email</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="ans">{{singleUser?.email}}</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Language</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="ans">{{singleUser?.lang}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>Biography</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="ans">{{singleUser?.bio}}</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

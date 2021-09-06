@@ -17,15 +17,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || 'null');
-
-    console.log(this.user)
   }
 
   logout() {
     localStorage.clear();
     this.user = JSON.parse(localStorage.getItem('user') || 'null');
-    console.log(this.user)
-
+    this.router.navigate(['/home'])
   }
 
 }

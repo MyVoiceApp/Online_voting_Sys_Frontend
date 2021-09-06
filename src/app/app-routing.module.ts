@@ -12,6 +12,8 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { CooperationComponent } from './pages/cooperation/cooperation.component';
 import { ContributionComponent } from './pages/contribution/contribution.component';
 import { SurveyFormComponent } from './pages/survey-form/survey-form.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
 
 const routes: Routes = [
   {
@@ -59,8 +61,16 @@ const routes: Routes = [
     component: ContributionComponent,
   },
   {
-    path: 'survey/survey-form',
+    path: 'survey-form',
     component: SurveyFormComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'profile-update',
+    component: UpdateProfileComponent,
   },
 ];
 

@@ -1,69 +1,56 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="row">
-    <section class="contactus-one mt-5 mb-5" id="contactus">
-      <!-- Section id-->
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-6">
-            <div class="map">
-              <img src="../../../assets/images/map.jpg" alt="">
-            </div>
+<div class="container mt-5 mb-5">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="map">
+            <img src="../../../assets/images/survey_freepick.jpg" alt="">
           </div>
-          <div class=" col-md-8 col-sm-6">
-            <div class="contact-block">
-              <div class="dart-headingstyle-one dart-mb-20">
-                <!--Style 1-->
-                <h2 class="dart-heading">Contact US</h2>
+        </div>
+        <div class=" col-md-6 col-sm-6">
+          <div class="contact-block">
+            <div class="dart-headingstyle-one dart-mb-20">
+              <!--Style 1-->
+              <div class="col-md-12">
+                <h3>Submit Survey</h3>
               </div>
-
-              <div class="contact-form">
-                <!-- contact form -->
-                <form class="row" id="contact">
-                  <div class="form-group col-md-6">
-                    <input type="email" class="form-control" [(ngModel)]="formObj.email" name="InputEmail1"
-                      id="InputEmail" placeholder="Your Email">
-                  </div>
-                  <div class="form-group col-md-6">
-                    <input type="text" class="form-control" [(ngModel)]="formObj.subject" name="InputName"
-                      id="InputName" placeholder="Subject">
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="text" class="form-control" [(ngModel)]="formObj.website" name="InputWeb" id="InputWeb"
-                      placeholder="Web Site (Optional)">
-                  </div>
-                  <div class="form-group col-md-12">
-                    <textarea class="form-control" [(ngModel)]="formObj.description" name="InputMessage"
-                      id="InputMessage" rows="4" placeholder="Message"></textarea>
-                  </div>
-                  <div class="col-md-12">
-                    <button name="submit" (click)="create()" type="submit" class="btn mt-3 dart-btn-xs">SEND
-                      MESSAGE</button>
-                  </div>
-                </form>
-              </div>
-
-              <hr>
-
-              <div class=" row contact-info">
-                <div class="col-md-12 col-sm-12">
-                  <p class="addre"><i class="fa fa-map-marker"></i>AT & PO. BOLUNDRA (R) TA.IDAR ,DIST.S.K GUJARAT INDIA
-                    -
-                    383421</p>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                  <p class="phone-call"><i class="fa fa-phone"></i> <a href="tel:+10484579845">+12 345 789 1234</a></p>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                  <p class="mail-id"><i class="fa fa-envelope"></i>contact@yourcompany.com</p>
-                </div>
-              </div>
-
+              <br />
+              <h6>Topic: {{topic_data?.name}}</h6>
+              <h6>Product: {{product_data?.name}}</h6>
             </div>
+
+            <div class="contact-form mt-4">
+              <!-- contact form -->
+              <form class="row">
+
+                <div class="form-group col-md-12">
+                  <label for="AboutProduct">Survey About Product ?</label>
+                  <input type="text" id="AboutProduct" [(ngModel)]="formObj.comment" class="form-control"
+                    name="AboutProduct">
+                </div>
+
+                <div class="form-group col-md-12 mt-2 mb-2">
+                  <label for="">Rating of product</label>
+                  <star-rating [value]="value" [totalstars]="totalstars" checkedcolor="red" uncheckedcolor="black"
+                    size="24px" [readonly]="readonly" (rate)="onRate($event)"></star-rating>
+                </div>
+
+                <div class="form-group col-md-12 mt-2 mb-2" *ngIf="warning">
+                  <p style="color:red">You already submit three time survey against this topic</p>
+                </div>
+
+
+                <div class="col-md-12">
+                  <button name="submit" (click)="create()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
+                </div>
+              </form>
+            </div>
+
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </div>
 

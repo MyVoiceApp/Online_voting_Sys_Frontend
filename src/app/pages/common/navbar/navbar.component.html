@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    Menu
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <div class="container">
@@ -33,10 +33,15 @@
         </li>
 
         <li id="userAction" *ngIf="user != null">
-          <img src="{{baseUrl}}/{{user['image']}}" alt="">
-        </li>
-        <li id="userAction" *ngIf="user != null">
-          <a class="nav-link logout" (click)="logout()">Logout</a>
+          <img src="{{baseUrl}}/{{user['image']}}" id="dropdownMenuButton" data-toggle="dropdown" alt="">
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item b_item" routerLink="/profile" routerLinkActive="onLinkactive"> <i class="fa fa-user"
+                aria-hidden="true"></i> Profile</a>
+            <a class="dropdown-item b_item"> <i class="fa fa-cog" aria-hidden="true"></i> Setting</a>
+            <a class="dropdown-item" (click)="logout()"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+          </div>
+
         </li>
         <li id="userAction" *ngIf="user == null">
           <a class="nav-link" routerLink="/login">Login</a>

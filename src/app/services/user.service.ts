@@ -22,4 +22,23 @@ export class UserService {
     return this.http.get(this.baseUrl + '/' + id);
   }
 
+  update(data: any) {
+    return this.http.post(this.baseUrl + '/update', data);
+  }
+
+  updateProfileImage(data: any) {
+    return this.http.post(this.baseUrl + '/update/profile', data);
+  }
+
+  saveimage(file: string | Blob) {
+    var fd = new FormData();
+    fd.append('image', file);
+    return this.http.post(environment.baseurl + '/upload/save', fd);
+  }
+
+
+  submitSurvey(data: any) {
+    return this.http.post(environment.baseurl + '/survey/create', data);
+  }
+
 }

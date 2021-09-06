@@ -36,6 +36,9 @@ import { ContactUsService } from './services/contact-us.service';
 import { ToastrModule } from 'ngx-toastr';
 import { SurveyFormComponent } from './pages/survey-form/survey-form.component';
 import { UserService } from './services/user.service';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import { UserService } from './services/user.service';
     TopicsComponent,
     ProductsComponent,
     CategoriesComponent,
-    SurveyFormComponent
+    SurveyFormComponent,
+    ProfileComponent,
+    UpdateProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import { UserService } from './services/user.service';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot(),
+    RatingModule
   ],
   providers: [
     LoginGuard,

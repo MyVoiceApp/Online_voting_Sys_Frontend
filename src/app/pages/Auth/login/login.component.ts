@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     ) {
       this.toastSrv.error('Please fill all fields', '', {
         timeOut: 2000,
-        positionClass: 'toast-top-right',
+        positionClass: 'toast-bottom-right',
         progressBar: true,
         progressAnimation: 'increasing'
       });

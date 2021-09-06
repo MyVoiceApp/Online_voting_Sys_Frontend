@@ -1,0 +1,72 @@
+.profile-img {
+  text-align: center;
+}
+
+.profile-img img {
+  width: 70%;
+  height: 180px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #313131b8;
+}
+
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  font-family: sans-serif !important;
+}
+
+#designation {
+  font-size: 13px;
+}
+
+#share {
+  margin: 20px 0px;
+}
+
+#share #socialMedia_Icon {
+  margin: 0px 8px;
+  width: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.file {
+  cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+.profile-edit-btn {
+  margin: 20px 0px;
+}
+
+label span {
+  color: red !important;
+  font-size: 10px;
+}
