@@ -1,1 +1,45 @@
 <app-navbar></app-navbar>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+
+    <div class="col-md-2">
+      <div class="card p-0">
+        <div class="card-body p-0">
+          <h4 id="h4">Categories</h4>
+          <ul>
+            <li>
+              <a>All</a>
+            </li>
+            <li *ngFor="let item of categories;index as i">
+              <a> <img src="{{baseUrl}}/{{item['image']}}" id="catIcon" alt=""> {{item['name']}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let item of products | paginate: { itemsPerPage: 4, currentPage: p }">
+          <div class="card topicCard">
+            <div class="card-body">
+              <div class="topicImage">
+                <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
+              </div>
+              <p class="title">{{item['product']['name']}}</p>
+              <p class="votes">{{item['survey']}} have voted</p>
+              <button class="btn voteNow">Vote Now</button>
+            </div>
+          </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<app-footer></app-footer>

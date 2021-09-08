@@ -30,13 +30,11 @@ export class TopicsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader = true;
-    this.topicSrv.getAll().subscribe((resp: any) => {
+    this.topicSrv.getAll_withsurvey().subscribe((resp: any) => {
       this.topics = resp.data;
-
       this.prodSrv.getAll().subscribe((resp: any) => {
         this.products = resp.data;
       })
-
       this.loader = false;
     })
   }

@@ -39,6 +39,7 @@ import { UserService } from './services/user.service';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
 import { RatingModule } from 'ng-starrating';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { RatingModule } from 'ng-starrating';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    RatingModule
+    RatingModule,
+    NgxPaginationModule
   ],
   providers: [
     LoginGuard,

@@ -37,7 +37,6 @@ export class ContactUsComponent implements OnInit {
       });
     } else {
       this.contactSrv.create(this.formObj).subscribe((resp: any) => {
-        console.log(resp);
         if (resp.message == 'success') {
           this.toastSrv.success('Form Submitted successfully', '', {
             timeOut: 2000,

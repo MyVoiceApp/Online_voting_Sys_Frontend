@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.sliderSrv.getAll().subscribe((resp: any) => {
       this.sliders = resp.data;
-      console.log(this.sliders)
     })
   }
 

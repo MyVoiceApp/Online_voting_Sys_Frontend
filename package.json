@@ -23,6 +23,7 @@
     "intl-tel-input": "^17.0.13",
     "jquery": "^3.6.0",
     "ng-starrating": "^1.0.20",
+    "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^14.1.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",

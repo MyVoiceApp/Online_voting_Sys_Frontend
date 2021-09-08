@@ -3,18 +3,18 @@
     <h5>HOT TOPICS</h5>
   </div>
   <div class="col-md-6">
-    <p id="seeAll">See All</p>
+    <span id="seeAll" routerLink="/survey">See All</span>
   </div>
 
   <!--card-->
   <div class="col-md-4" *ngFor="let item of topics;index as i">
-    <div class="card" (click)="singleTopic(item)">
+    <div class="card" (click)="singleTopic(item['topic'])">
       <div class="card-body">
         <div class="topicImage">
-          <img src="{{baseUrl}}/{{item['image']}}" alt="">
+          <img src="{{baseUrl}}/{{item['topic']['image']}}" alt="">
         </div>
-        <p class="title">{{item['name']}}</p>
-        <p class="votes">356,89987 have voted</p>
+        <p class="title">{{item['topic']['name']}}</p>
+        <p class="votes">{{item['survey']}} have voted</p>
         <button class="btn voteNow">Vote Now</button>
       </div>
     </div>

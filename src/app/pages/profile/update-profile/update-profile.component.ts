@@ -33,7 +33,6 @@ export class UpdateProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userSrv.userById(this.user._id).subscribe((resp: any) => {
-      console.log(resp);
       this.singleUser_db = resp.data;
       this.formObj.name = this.singleUser_db.name;
       this.formObj.birthdate = this.singleUser_db.birthdate;

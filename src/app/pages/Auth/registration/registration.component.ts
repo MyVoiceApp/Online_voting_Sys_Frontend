@@ -31,7 +31,6 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.sliderSrv.getAll().subscribe((resp: any) => {
       this.sliders = resp.data;
-      console.log(this.sliders)
     })
   }
 
@@ -48,7 +47,6 @@ export class RegistrationComponent implements OnInit {
         progressAnimation: 'increasing'
       });
     } else {
-      console.log(this.formObj);
       if (this.formObj.password.length <= 7) {
         this.toastSrv.error('Password minimum eight characted long ', '', {
           timeOut: 2000,

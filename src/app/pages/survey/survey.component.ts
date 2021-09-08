@@ -21,6 +21,7 @@ export class SurveyComponent implements OnInit {
   loader = false;
   single_Topic: any;
   localToken = localStorage.getItem('token');
+  p = 1;
 
   constructor(
     private topicSrv: TopicsService,
@@ -32,20 +33,15 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader = true;
-    this.topicSrv.getAll().subscribe((resp: any) => {
+    this.topicSrv.getAll_withsurvey().subscribe((resp: any) => {
       this.topics = resp.data;
-      console.log(this.topics);
       this.prodSrv.getAll().subscribe((resp: any) => {
         this.products = resp.data;
-        console.log(this.products);
+        this.cateSrv.getAll().subscribe((resp: any) => {
+          this.categories = resp.data;
+          this.loader = false;
+        })
       })
-
-      this.cateSrv.getAll().subscribe((resp: any) => {
-        this.categories = resp.data;
-        console.log(this.categories);
-      })
-
-      this.loader = false;
     })
   }
 
@@ -57,13 +53,6 @@ export class SurveyComponent implements OnInit {
 
   goforVote(id: any) {
     if (this.localToken == null) {
-      // this.toastSrv.error('Please first Login', '', {
-      //   timeOut: 2000,
-      //   positionClass: 'toast-top-right',
-      //   progressBar: true,
-      //   progressAnimation: 'increasing'
-      // });
-
       Swal.fire({
         title: 'You are not Logged In',
         text: "You want to register before survey",
