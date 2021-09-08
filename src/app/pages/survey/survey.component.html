@@ -1,1 +1,40 @@
 <app-navbar></app-navbar>
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+
+    <div class="col-md-2">
+      <div class="card p-0">
+        <div class="card-body p-0">
+          <h4 id="h4">Categories</h4>
+          <ul>
+            <li *ngFor="let item of categories;index as i">
+              <a> <img src="{{baseUrl}}/{{item['image']}}" id="catIcon" alt=""> {{item['name']}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-3" *ngFor="let item of topics;index as i">
+          <div class="card topicCard" (click)="singleTopic(item)">
+            <div class="card-body">
+              <div class="topicImage">
+                <img src="{{baseUrl}}/{{item['image']}}" alt="">
+              </div>
+              <p class="title">{{item['name']}}</p>
+              <p class="votes">356,89987 have voted</p>
+              <button class="btn voteNow">Vote Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<app-footer></app-footer>
