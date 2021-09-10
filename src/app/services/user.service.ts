@@ -36,7 +36,6 @@ export class UserService {
     return this.http.post(environment.baseurl + '/upload/save', fd);
   }
 
-
   submitSurvey(data: any) {
     return this.http.post(environment.baseurl + '/survey/create', data);
   }

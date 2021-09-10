@@ -61,7 +61,7 @@ const routes: Routes = [
     component: ContributionComponent,
   },
   {
-    path: 'survey-form',
+    path: 'survey-form/:id',
     component: SurveyFormComponent,
   },
   {

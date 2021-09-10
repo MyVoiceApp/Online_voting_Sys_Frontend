@@ -75,7 +75,7 @@ export class TopicsComponent implements OnInit {
         productId: id,
       }
       localStorage.setItem('topic', JSON.stringify(topicObj));
-      this._router.navigate(['/survey-form'])
+      this._router.navigate(['/survey-form/new'])
       document.getElementById('closeModal')?.click()
     }
   }

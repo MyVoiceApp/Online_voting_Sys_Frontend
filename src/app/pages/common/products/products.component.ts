@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TopicsService } from 'src/app/services/topics.service';
 import { environment } from 'src/environments/environment';
 import { ProductService } from '../../../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -17,6 +18,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private topicSrv: TopicsService,
     private prodSrv: ProductService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -27,5 +29,8 @@ export class ProductsComponent implements OnInit {
     })
   }
 
+  voteByproduct(id: any) {
+    this.router.navigate(['/survey-form/' + id])
+  }
 
 }

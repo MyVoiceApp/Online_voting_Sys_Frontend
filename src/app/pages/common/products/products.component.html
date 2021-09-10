@@ -7,15 +7,15 @@
   </div>
 
   <!--card-->
-  <div class="col-md-4" *ngFor="let item of products;index as i">
+  <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let item of products;index as i">
     <div class="card">
       <div class="card-body">
         <div class="topicImage">
           <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
         </div>
-        <p class="title">{{item['product']['name']}}</p>
-        <p class="title">{{item['survey']}}</p>
-        <button class="btn voteNow">Sumit</button>
+        <p class="title">{{item['product']['name'] | slice:0:25}}</p>
+        <p class="title">{{item['vote']}}</p>
+        <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Submit</button>
       </div>
     </div>
   </div>

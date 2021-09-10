@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -21,4 +22,9 @@ export class ProductService {
   getById(id: any) {
     return this.http.get(this.baseUrl + '/getById/' + id);
   }
+
+  voteByproduct(data: any) {
+    return this.http.post(environment.baseurl + '/voteproduct/create', data);
+  }
+
 }

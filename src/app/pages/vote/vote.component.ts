@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { TopicsService } from 'src/app/services/topics.service';
 import { environment } from 'src/environments/environment';
@@ -20,7 +21,8 @@ export class VoteComponent implements OnInit {
   constructor(
     private topicSrv: TopicsService,
     private prodSrv: ProductService,
-    private cateSrv: CategoryService
+    private cateSrv: CategoryService,
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.loader = true;
@@ -31,6 +33,10 @@ export class VoteComponent implements OnInit {
         this.loader = false;
       })
     })
+  }
+
+  voteByproduct(id: any) {
+    this.router.navigate(['/survey-form/' + id])
   }
 
 }

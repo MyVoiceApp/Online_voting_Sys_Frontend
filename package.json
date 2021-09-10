@@ -25,8 +25,9 @@
     "ng-starrating": "^1.0.20",
     "ngx-pagination": "^5.1.1",
     "ngx-toastr": "^14.1.0",
+    "observable": "^2.1.4",
     "popper.js": "^1.16.1",
-    "rxjs": "~6.6.0",
+    "rxjs": "^6.6.7",
     "sweetalert2": "^11.1.4",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"

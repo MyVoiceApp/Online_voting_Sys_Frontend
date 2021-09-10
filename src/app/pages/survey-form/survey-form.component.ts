@@ -6,6 +6,7 @@ import { TopicsService } from '../../services/topics.service';
 import { ProductService } from '../../services/product.service';
 import { StarRatingComponent } from 'ng-starrating';
 import { UserService } from '../../services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-survey-form',
@@ -21,6 +22,7 @@ export class SurveyFormComponent implements OnInit {
   readonly = false;
   totalstars = 5;
   warning = false;
+  action = false;
 
   topic: any;
   topic_data: any;
@@ -31,6 +33,7 @@ export class SurveyFormComponent implements OnInit {
     topicId: '',
     productId: '',
     comment: '',
+    ip: '',
     user: ''
   }
   user: any;
@@ -42,21 +45,36 @@ export class SurveyFormComponent implements OnInit {
     private toastSrv: ToastrService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private location: Location,
   ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || 'null')
     this.topic = JSON.parse(localStorage.getItem('topic') || 'null');
-    if (this.user == null) {
-      this._router.navigate(['/home'])
-    } else {
-      this.topicSrv.getById(this.topic.topicId).subscribe((tresp: any) => {
-        this.topic_data = tresp.data;
-        this.productSrv.getById(this.topic.productId).subscribe((presp: any) => {
-          this.product_data = presp.data;
+    let route = this._route.snapshot.params['id'];
+
+    if (route == 'new') {
+      if (this.user == null) {
+        // this._router.navigate(['/home'])
+        this.backToBack()
+      } else {
+        this.action = false;
+        this.formObj.user = this.user._id;
+        this.topicSrv.getById(this.topic.topicId).subscribe((tresp: any) => {
+          this.topic_data = tresp.data;
+          this.productSrv.getById(this.topic.productId).subscribe((presp: any) => {
+            this.product_data = presp.data;
+          })
         })
+      }
+    } else {
+      this.action = true;
+      this.formObj.productId = route;
+      this.productSrv.getById(route).subscribe((presp: any) => {
+        this.product_data = presp.data;
       })
     }
+
   }
 
   create() {
@@ -82,7 +100,8 @@ export class SurveyFormComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'increasing'
           });
-          this._router.navigate(['/home'])
+          // this._router.navigate(['/home'])
+          this.backToBack()
         } else if (resp.message == 'already three time survey submitted') {
           this.warning = true;
           this.toastSrv.error('You already submit three time survey against this topic.', '', {
@@ -100,10 +119,47 @@ export class SurveyFormComponent implements OnInit {
 
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
     this.formObj.rating = $event.newValue;
-    // alert(`Old Value:${$event.oldValue},
-    //   New Value: ${$event.newValue},
-    //   Checked Color: ${$event.starRating.checkedcolor},
-    //   Unchecked Color: ${$event.starRating.uncheckedcolor}`);
+  }
+
+  AddedVote() {
+    if (
+      this.formObj.comment == '' ||
+      this.formObj.rating == 0
+    ) {
+      this.toastSrv.error('Please fill required fields', '', {
+        timeOut: 2000,
+        positionClass: 'toast-top-right',
+        progressBar: true,
+        progressAnimation: 'increasing'
+      });
+    } else {
+      this.productSrv.voteByproduct(this.formObj).subscribe((resp: any) => {
+        if (resp.message == 'success') {
+          this.toastSrv.success('Vote Added', '', {
+            timeOut: 2000,
+            positionClass: 'toast-top-right',
+            progressBar: true,
+            progressAnimation: 'increasing'
+          });
+          // this._router.navigate(['/home'])
+          this.backToBack()
+        } else if (resp.message == 'already three time vote submitted') {
+          this.warning = true;
+          this.toastSrv.error('You already submit three time vote against this product.', '', {
+            timeOut: 5000,
+            positionClass: 'toast-top-right',
+            progressBar: true,
+            progressAnimation: 'increasing'
+          });
+        } else {
+          console.log('something went wrong')
+        }
+      })
+    }
+  }
+
+  backToBack() {
+    this.location.back();
   }
 
 }

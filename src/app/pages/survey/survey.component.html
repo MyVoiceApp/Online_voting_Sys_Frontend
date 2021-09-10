@@ -8,10 +8,10 @@
         <div class="card-body p-0">
           <h4 id="h4">Categories</h4>
           <ul>
-            <li>
+            <li (click)="selectCategory('all')">
               <a>All</a>
             </li>
-            <li *ngFor="let item of categories;index as i">
+            <li *ngFor="let item of categories;index as i" (click)="selectCategory(item)">
               <a> <img src="{{baseUrl}}/{{item['image']}}" id="catIcon" alt=""> {{item['name']}}</a>
             </li>
           </ul>
@@ -21,7 +21,8 @@
 
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-3" *ngFor="let item of topics | paginate: { itemsPerPage: 4, currentPage: p }">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+          *ngFor="let item of topics | paginate: { itemsPerPage: 1000, currentPage: p }">
           <div class="card topicCard" (click)="singleTopic(item['topic'])">
             <div class="card-body">
               <div class="topicImage">
@@ -33,7 +34,7 @@
             </div>
           </div>
         </div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
       </div>
     </div>

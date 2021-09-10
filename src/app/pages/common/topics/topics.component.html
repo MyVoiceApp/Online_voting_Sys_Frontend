@@ -7,13 +7,13 @@
   </div>
 
   <!--card-->
-  <div class="col-md-4" *ngFor="let item of topics;index as i">
+  <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let item of topics;index as i">
     <div class="card" (click)="singleTopic(item['topic'])">
       <div class="card-body">
         <div class="topicImage">
           <img src="{{baseUrl}}/{{item['topic']['image']}}" alt="">
         </div>
-        <p class="title">{{item['topic']['name']}}</p>
+        <p class="title" title="{{item['topic']['name']}}">{{item['topic']['name'] | slice:0:25}}</p>
         <p class="votes">{{item['survey']}} have voted</p>
         <button class="btn voteNow">Vote Now</button>
       </div>

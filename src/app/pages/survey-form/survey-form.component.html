@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf="!action">
   <div class="card">
     <div class="card-body">
       <div class="row">
@@ -43,6 +43,60 @@
 
                 <div class="col-md-12">
                   <button name="submit" (click)="create()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5 mb-5" *ngIf="action">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="map">
+            <img src="../../../assets/images/survey_freepick.jpg" alt="">
+          </div>
+        </div>
+        <div class=" col-md-6 col-sm-6">
+          <div class="contact-block">
+            <div class="dart-headingstyle-one dart-mb-20">
+              <!--Style 1-->
+              <div class="col-md-12">
+                <h3>Submit Survey</h3>
+              </div>
+              <br />
+              <h6>Product: {{product_data?.name}}</h6>
+            </div>
+
+            <div class="contact-form mt-4">
+              <!-- contact form -->
+              <form class="row">
+
+                <div class="form-group col-md-12">
+                  <label for="AboutProduct">Survey About Product ?</label>
+                  <input type="text" id="AboutProduct" [(ngModel)]="formObj.comment" class="form-control"
+                    name="AboutProduct">
+                </div>
+
+                <div class="form-group col-md-12 mt-2 mb-2">
+                  <label for="">Rating of product</label>
+                  <star-rating [value]="value" [totalstars]="totalstars" checkedcolor="red" uncheckedcolor="black"
+                    size="24px" [readonly]="readonly" (rate)="onRate($event)"></star-rating>
+                </div>
+
+                <div class="form-group col-md-12 mt-2 mb-2" *ngIf="warning">
+                  <p style="color:red">You already submit three time survey against this Prodduct</p>
+                </div>
+
+
+                <div class="col-md-12">
+                  <button name="submit" (click)="AddedVote()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
                 </div>
               </form>
             </div>

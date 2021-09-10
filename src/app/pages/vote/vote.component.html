@@ -3,7 +3,21 @@
 <div class="container mt-5 mb-5">
   <div class="row">
 
-    <div class="col-md-2">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+      *ngFor="let item of products | paginate: { itemsPerPage: 1000, currentPage: p }">
+      <div class="card topicCard">
+        <div class="card-body">
+          <div class="topicImage">
+            <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
+          </div>
+          <p class="title">{{item['product']['name']}}</p>
+          <p class="votes">{{item['vote']}} have voted</p>
+          <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Vote Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-2">
       <div class="card p-0">
         <div class="card-body p-0">
           <h4 id="h4">Categories</h4>
@@ -21,22 +35,22 @@
 
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-3" *ngFor="let item of products | paginate: { itemsPerPage: 4, currentPage: p }">
+        <div class="col-md-3" *ngFor="let item of products | paginate: { itemsPerPage: 1000, currentPage: p }">
           <div class="card topicCard">
             <div class="card-body">
               <div class="topicImage">
                 <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
               </div>
               <p class="title">{{item['product']['name']}}</p>
-              <p class="votes">{{item['survey']}} have voted</p>
-              <button class="btn voteNow">Vote Now</button>
+              <p class="votes">{{item['vote']}} have voted</p>
+              <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Vote Now</button>
             </div>
           </div>
         </div>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>

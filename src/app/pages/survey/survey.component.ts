@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from 'src/app/services/product.service';
 import { TopicsService } from 'src/app/services/topics.service';
@@ -15,6 +15,7 @@ import { CategoryService } from '../../services/category.service';
 export class SurveyComponent implements OnInit {
 
   topics = [];
+  mastertopics = [];
   products = [];
   categories = [];
   baseUrl = environment.baseurl;
@@ -29,18 +30,23 @@ export class SurveyComponent implements OnInit {
     private toastSrv: ToastrService,
     private cateSrv: CategoryService,
     private _router: Router,
+    private _route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.loader = true;
+    this.cateSrv.getAll().subscribe((resp: any) => {
+      this.categories = resp.data;
+    })
+    this.get();
+  }
+
+  get() {
     this.topicSrv.getAll_withsurvey().subscribe((resp: any) => {
       this.topics = resp.data;
+      this.mastertopics = resp.data;
       this.prodSrv.getAll().subscribe((resp: any) => {
         this.products = resp.data;
-        this.cateSrv.getAll().subscribe((resp: any) => {
-          this.categories = resp.data;
-          this.loader = false;
-        })
       })
     })
   }
@@ -74,8 +80,21 @@ export class SurveyComponent implements OnInit {
         productId: id,
       }
       localStorage.setItem('topic', JSON.stringify(topicObj));
-      this._router.navigate(['/survey-form'])
+      this._router.navigate(['/survey-form/new'])
       document.getElementById('closeModal')?.click()
+    }
+  }
+
+  selectCategory(item: any) {
+    if (item == 'all') {
+      this.get();
+    } else {
+      this.topics = [];
+      for (let i = 0; i < this.mastertopics.length; i++) {
+        if (this.mastertopics[i]['topic']['category']['_id'] == item['_id']) {
+          this.topics.push(this.mastertopics[i])
+        }
+      }
     }
   }
 
