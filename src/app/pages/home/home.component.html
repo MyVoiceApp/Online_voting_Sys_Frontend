@@ -9,8 +9,8 @@
       <form>
         <label for="search" id="searchLabel">What Surveys are you looking for ?</label>
         <div class="form-group" id="form">
-          <input type="search" id="form" name="survey" placeholder="Search for a survey">
-          <button id="searchButton">
+          <input type="search" id="form" name="survey" [(ngModel)]="formObj.text" placeholder="Search for a survey">
+          <button id="searchButton" (click)="search()">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
         </div>

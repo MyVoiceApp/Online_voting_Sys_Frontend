@@ -3,6 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { TopicsService } from 'src/app/services/topics.service';
 import { environment } from 'src/environments/environment';
 import { CategoryService } from '../../../services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -17,6 +18,7 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private categorySrv: CategoryService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +27,10 @@ export class CategoriesComponent implements OnInit {
       this.categories = resp.data;
       this.loader = false;
     })
+  }
+
+  search(id: any) {
+    this.router.navigate(['/search-result/' + id + '/category'])
   }
 
 

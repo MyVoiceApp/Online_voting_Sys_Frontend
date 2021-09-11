@@ -39,7 +39,8 @@ import { UserService } from './services/user.service';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
 import { RatingModule } from 'ng-starrating';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchComponent } from './pages/search/search.component'; // <-- import the module
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
     CategoriesComponent,
     SurveyFormComponent,
     ProfileComponent,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

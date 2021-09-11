@@ -13,8 +13,7 @@
         <div class="topicImage">
           <img src="{{baseUrl}}/{{item['image']}}" alt="">
         </div>
-        <p class="title">{{item['name']}}</p>
-        <button class="btn voteNow">Sumit</button>
+        <button class="btn catButton" (click)="search(item['_id'])">{{item['name']}}</button>
       </div>
     </div>
   </div>

@@ -48,12 +48,16 @@
       }
 
       .votes {
-        margin: 15px 0px 0px 15px;
+        color: #353535;
+        margin: 10px 15px 0px;
+        cursor: pointer;
+        font-family: revert;
+        font-weight: 600;
       }
 
       .voteNow {
-  margin: 10px 0px 20px 15px;
-}
+        margin: 10px 0px 20px 15px;
+      }
     }
   }
 }

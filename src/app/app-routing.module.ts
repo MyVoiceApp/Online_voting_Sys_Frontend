@@ -14,6 +14,7 @@ import { ContributionComponent } from './pages/contribution/contribution.compone
 import { SurveyFormComponent } from './pages/survey-form/survey-form.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: 'profile-update',
     component: UpdateProfileComponent,
+  },
+  {
+    path: 'search-result/:id/:type',
+    component: SearchComponent,
   },
 ];
 

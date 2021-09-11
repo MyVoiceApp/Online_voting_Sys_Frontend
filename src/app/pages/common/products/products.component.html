@@ -14,8 +14,14 @@
           <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
         </div>
         <p class="title">{{item['product']['name'] | slice:0:25}}</p>
-        <p class="title">{{item['vote']}}</p>
-        <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Submit</button>
+        <div class="row">
+          <div class="col-6 col-md-6">
+            <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Submit</button>
+          </div>
+          <div class="col-6 col-md-6">
+            <p class="title pull-right">{{item['vote']}} have voted</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

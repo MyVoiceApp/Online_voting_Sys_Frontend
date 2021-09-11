@@ -22,6 +22,12 @@ export class TopicsService {
     return this.http.get(this.baseUrl + '/getById/' + id);
   }
 
+  search(text: any) {
+    return this.http.get(this.baseUrl + '/search/' + text);
+  }
 
+  Bycategory(text: any) {
+    return this.http.get(this.baseUrl + '/bycategory/' + text);
+  }
 
 }
