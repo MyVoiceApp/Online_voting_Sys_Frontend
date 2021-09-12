@@ -3,29 +3,15 @@
 <div class="container mt-5 mb-5">
   <div class="row">
 
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3"
-      *ngFor="let item of products | paginate: { itemsPerPage: 1000, currentPage: p }">
-      <div class="card topicCard">
-        <div class="card-body">
-          <div class="topicImage">
-            <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
-          </div>
-          <p class="title">{{item['product']['name']}}</p>
-          <p class="votes">{{item['vote']}} have voted</p>
-          <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Vote Now</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="col-md-2">
+    <div class="col-md-2">
       <div class="card p-0">
         <div class="card-body p-0">
           <h4 id="h4">Categories</h4>
           <ul>
-            <li>
+            <li (click)="selectCategory('all')">
               <a>All</a>
             </li>
-            <li *ngFor="let item of categories;index as i">
+            <li *ngFor="let item of categories;index as i" (click)="selectCategory(item)">
               <a> <img src="{{baseUrl}}/{{item['image']}}" id="catIcon" alt=""> {{item['name']}}</a>
             </li>
           </ul>
@@ -35,25 +21,63 @@
 
     <div class="col-md-10">
       <div class="row">
-        <div class="col-md-3" *ngFor="let item of products | paginate: { itemsPerPage: 1000, currentPage: p }">
-          <div class="card topicCard">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+          *ngFor="let item of topics | paginate: { itemsPerPage: 1000, currentPage: p }">
+          <div class="card topicCard" (click)="singleTopic(item['topic'])">
             <div class="card-body">
               <div class="topicImage">
-                <img src="{{baseUrl}}/{{item['product']['image']}}" alt="">
+                <img src="{{baseUrl}}/{{item['topic']['image']}}" alt="">
               </div>
-              <p class="title">{{item['product']['name']}}</p>
-              <p class="votes">{{item['vote']}} have voted</p>
-              <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Vote Now</button>
+              <p class="title">{{item['topic']['name']}}</p>
+              <p class="votes">{{item['survey']}} have voted</p>
+              <button class="btn voteNow">Vote Now</button>
             </div>
           </div>
         </div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
 
       </div>
-    </div> -->
+    </div>
 
   </div>
 </div>
 
 
 <app-footer></app-footer>
+
+
+<!-- Button trigger modal -->
+<button hidden data-toggle="modal" id="openModel" data-target="#exampleModal">
+</button>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{single_Topic?.name}} <span>(Selected Topic)</span> </h5>
+      </div>
+
+      <div class="modal-body">
+        <h4 class="text-center">Choose Product/Option</h4>
+        <div class="row" *ngFor="let item of products;">
+          <div class="col-md-2">
+            <div class="productImage">
+              <img src="{{baseUrl}}/{{item['image']}}" alt="" (click)="goforVote(item['_id'])">
+            </div>
+          </div>
+          <div class="col-md-9">
+            <h6 (click)="goforVote(item['_id'])">{{item['name']}}</h6>
+            <span id="voted">Voted : 65,765,650</span>
+            <p>{{item['description']}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="closeModal" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

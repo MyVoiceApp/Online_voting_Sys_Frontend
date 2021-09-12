@@ -7,7 +7,8 @@ import { ProductService } from '../../services/product.service';
 import { StarRatingComponent } from 'ng-starrating';
 import { UserService } from '../../services/user.service';
 import { Location } from '@angular/common';
-
+import { environment } from '../../../environments/environment.prod';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-survey-form',
   templateUrl: './survey-form.component.html',
@@ -22,18 +23,16 @@ export class SurveyFormComponent implements OnInit {
   readonly = false;
   totalstars = 5;
   warning = false;
-  action = false;
-
-  topic: any;
-  topic_data: any;
   product_data: any;
+  baseUrl = environment.baseurl;
 
   formObj = {
+    fullname: '',
+    workName: '',
+    workingplace: '',
     rating: 0,
-    topicId: '',
     productId: '',
     comment: '',
-    ip: '',
     user: ''
   }
   user: any;
@@ -50,26 +49,13 @@ export class SurveyFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user') || 'null')
-    this.topic = JSON.parse(localStorage.getItem('topic') || 'null');
     let route = this._route.snapshot.params['id'];
+    this.formObj.productId = route;
+    this.formObj.user = this.user._id;
 
-    if (route == 'new') {
-      if (this.user == null) {
-        // this._router.navigate(['/home'])
-        this.backToBack()
-      } else {
-        this.action = false;
-        this.formObj.user = this.user._id;
-        this.topicSrv.getById(this.topic.topicId).subscribe((tresp: any) => {
-          this.topic_data = tresp.data;
-          this.productSrv.getById(this.topic.productId).subscribe((presp: any) => {
-            this.product_data = presp.data;
-          })
-        })
-      }
+    if (this.user == null) {
+      this.backToBack();
     } else {
-      this.action = true;
-      this.formObj.productId = route;
       this.productSrv.getById(route).subscribe((presp: any) => {
         this.product_data = presp.data;
       })
@@ -78,11 +64,11 @@ export class SurveyFormComponent implements OnInit {
   }
 
   create() {
-    this.formObj.productId = this.topic.productId;
-    this.formObj.topicId = this.topic.topicId;
-    this.formObj.user = this.user._id;
     if (
       this.formObj.comment == '' ||
+      this.formObj.fullname == '' ||
+      this.formObj.workingplace == '' ||
+      this.formObj.workName == '' ||
       this.formObj.rating == 0
     ) {
       this.toastSrv.error('Please fill required fields', '', {
@@ -92,7 +78,7 @@ export class SurveyFormComponent implements OnInit {
         progressAnimation: 'increasing'
       });
     } else {
-      this.userSrv.submitSurvey(this.formObj).subscribe((resp: any) => {
+      this.userSrv.surveyByproduct(this.formObj).subscribe((resp: any) => {
         if (resp.message == 'success') {
           this.toastSrv.success('Survey Submitted successfully', '', {
             timeOut: 2000,
@@ -100,11 +86,15 @@ export class SurveyFormComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'increasing'
           });
-          // this._router.navigate(['/home'])
+          Swal.fire(
+            'Thnaks',
+            'Your Vote is sumitted successfully',
+            'success'
+          )
           this.backToBack()
         } else if (resp.message == 'already three time survey submitted') {
           this.warning = true;
-          this.toastSrv.error('You already submit three time survey against this topic.', '', {
+          this.toastSrv.error('You already submit three time survey against this Product.', '', {
             timeOut: 5000,
             positionClass: 'toast-top-right',
             progressBar: true,
@@ -119,43 +109,6 @@ export class SurveyFormComponent implements OnInit {
 
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }) {
     this.formObj.rating = $event.newValue;
-  }
-
-  AddedVote() {
-    if (
-      this.formObj.comment == '' ||
-      this.formObj.rating == 0
-    ) {
-      this.toastSrv.error('Please fill required fields', '', {
-        timeOut: 2000,
-        positionClass: 'toast-top-right',
-        progressBar: true,
-        progressAnimation: 'increasing'
-      });
-    } else {
-      this.productSrv.voteByproduct(this.formObj).subscribe((resp: any) => {
-        if (resp.message == 'success') {
-          this.toastSrv.success('Vote Added', '', {
-            timeOut: 2000,
-            positionClass: 'toast-top-right',
-            progressBar: true,
-            progressAnimation: 'increasing'
-          });
-          // this._router.navigate(['/home'])
-          this.backToBack()
-        } else if (resp.message == 'already three time vote submitted') {
-          this.warning = true;
-          this.toastSrv.error('You already submit three time vote against this product.', '', {
-            timeOut: 5000,
-            positionClass: 'toast-top-right',
-            progressBar: true,
-            progressAnimation: 'increasing'
-          });
-        } else {
-          console.log('something went wrong')
-        }
-      })
-    }
   }
 
   backToBack() {

@@ -1,66 +1,16 @@
 <app-navbar></app-navbar>
-<div class="container mt-5 mb-5" *ngIf="!action">
+<div class="container mt-5 mb-5">
   <div class="card">
     <div class="card-body">
       <div class="row">
         <div class="col-md-6 col-sm-6">
           <div class="map">
-            <img src="../../../assets/images/survey_freepick.jpg" alt="">
-          </div>
-        </div>
-        <div class=" col-md-6 col-sm-6">
-          <div class="contact-block">
-            <div class="dart-headingstyle-one dart-mb-20">
-              <!--Style 1-->
-              <div class="col-md-12">
-                <h3>Submit Survey</h3>
+            <div class="row justify-content-center">
+              <div class="col-12 col-sm-9 col-md-8">
+                <!-- <img src="../../../assets/images/survey_freepick.jpg" alt=""> -->
+                <img src="{{baseUrl}}/{{product_data?.image}}" alt="">
               </div>
-              <br />
-              <h6>Topic: {{topic_data?.name}}</h6>
-              <h6>Product: {{product_data?.name}}</h6>
             </div>
-
-            <div class="contact-form mt-4">
-              <!-- contact form -->
-              <form class="row">
-
-                <div class="form-group col-md-12">
-                  <label for="AboutProduct">Survey About Product ?</label>
-                  <input type="text" id="AboutProduct" [(ngModel)]="formObj.comment" class="form-control"
-                    name="AboutProduct">
-                </div>
-
-                <div class="form-group col-md-12 mt-2 mb-2">
-                  <label for="">Rating of product</label>
-                  <star-rating [value]="value" [totalstars]="totalstars" checkedcolor="red" uncheckedcolor="black"
-                    size="24px" [readonly]="readonly" (rate)="onRate($event)"></star-rating>
-                </div>
-
-                <div class="form-group col-md-12 mt-2 mb-2" *ngIf="warning">
-                  <p style="color:red">You already submit three time survey against this topic</p>
-                </div>
-
-
-                <div class="col-md-12">
-                  <button name="submit" (click)="create()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
-                </div>
-              </form>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container mt-5 mb-5" *ngIf="action">
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6 col-sm-6">
-          <div class="map">
-            <img src="../../../assets/images/survey_freepick.jpg" alt="">
           </div>
         </div>
         <div class=" col-md-6 col-sm-6">
@@ -79,13 +29,30 @@
               <form class="row">
 
                 <div class="form-group col-md-12">
-                  <label for="AboutProduct">Survey About Product ?</label>
+                  <label for="fullName">Your full name <span id="required">*</span> </label>
+                  <input type="text" id="fullName" [(ngModel)]="formObj.fullname" class="form-control" name="fullName">
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label for="workName">Where do you do? <span id="required">*</span> </label>
+                  <input type="text" id="workName" [(ngModel)]="formObj.workName" class="form-control" name="fullName">
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label for="workingplace">Where do you work? <span id="required">*</span> </label>
+                  <input type="text" id="workingplace" [(ngModel)]="formObj.workingplace" class="form-control"
+                    name="fullName">
+                </div>
+
+
+                <div class="form-group col-md-12">
+                  <label for="AboutProduct">Survey About Product ? <span id="required">*</span> </label>
                   <input type="text" id="AboutProduct" [(ngModel)]="formObj.comment" class="form-control"
                     name="AboutProduct">
                 </div>
 
                 <div class="form-group col-md-12 mt-2 mb-2">
-                  <label for="">Rating of product</label>
+                  <label for="">Rating of product <span id="required">*</span> </label>
                   <star-rating [value]="value" [totalstars]="totalstars" checkedcolor="red" uncheckedcolor="black"
                     size="24px" [readonly]="readonly" (rate)="onRate($event)"></star-rating>
                 </div>
@@ -96,7 +63,7 @@
 
 
                 <div class="col-md-12">
-                  <button name="submit" (click)="AddedVote()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
+                  <button name="submit" (click)="create()" type="submit" class="btn mt-3 dart-btn-xs">Submit</button>
                 </div>
               </form>
             </div>

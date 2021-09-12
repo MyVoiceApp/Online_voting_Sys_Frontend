@@ -17,7 +17,7 @@
           <a class="nav-link" routerLink="/about-us" routerLinkActive="onLinkactive">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/vote" routerLinkActive="onLinkactive">Vote</a>
+          <a class="nav-link" routerLink="/votes" routerLinkActive="onLinkactive">Vote</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/survey" routerLinkActive="onLinkactive">Survey</a>
@@ -28,9 +28,9 @@
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/coopration" routerLinkActive="onLinkactive">Cooperation</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" routerLink="/contribution" routerLinkActive="onLinkactive">Contribution</a>
-        </li>
+        </li> -->
 
         <li id="userAction" *ngIf="user != null">
           <img src="{{baseUrl}}/{{user['image']}}" id="dropdownMenuButton" data-toggle="dropdown" alt="">
@@ -38,7 +38,8 @@
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item b_item" routerLink="/profile" routerLinkActive="onLinkactive"> <i class="fa fa-user"
                 aria-hidden="true"></i> Profile</a>
-            <a class="dropdown-item b_item"> <i class="fa fa-cog" aria-hidden="true"></i> Setting</a>
+            <a class="dropdown-item b_item" routerLink="/profile-update"> <i class="fa fa-cog" aria-hidden="true"></i>
+              Setting</a>
             <a class="dropdown-item" (click)="logout()"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
           </div>
 

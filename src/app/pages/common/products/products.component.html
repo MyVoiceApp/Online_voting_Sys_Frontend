@@ -3,7 +3,7 @@
     <h5>WE LISTEN TO YOU</h5>
   </div>
   <div class="col-md-6">
-    <span id="seeAll" routerLink="/vote">See All</span>
+    <span id="seeAll" routerLink="/survey">See All</span>
   </div>
 
   <!--card-->
@@ -16,7 +16,7 @@
         <p class="title">{{item['product']['name'] | slice:0:25}}</p>
         <div class="row">
           <div class="col-6 col-md-6">
-            <button class="btn voteNow" (click)="voteByproduct(item['product']['_id'])">Submit</button>
+            <button class="btn voteNow" (click)="surveyByproduct(item['product']['_id'])">Submit</button>
           </div>
           <div class="col-6 col-md-6">
             <p class="title pull-right">{{item['vote']}} have voted</p>

@@ -5,6 +5,7 @@ import { ProductService } from '../../../services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-topics',
@@ -26,11 +27,16 @@ export class TopicsComponent implements OnInit {
     private prodSrv: ProductService,
     private toastSrv: ToastrService,
     private _router: Router,
+    private userSrv: UserService
   ) { }
 
   ngOnInit(): void {
     this.loader = true;
-    this.topicSrv.getAll_withsurvey().subscribe((resp: any) => {
+    this.getAll();
+  }
+
+  getAll() {
+    this.topicSrv.getAll_withvote().subscribe((resp: any) => {
       this.topics = resp.data;
       this.prodSrv.getAll().subscribe((resp: any) => {
         this.products = resp.data;
@@ -46,38 +52,37 @@ export class TopicsComponent implements OnInit {
 
 
   goforVote(id: any) {
-    if (this.localToken == null) {
-      // this.toastSrv.error('Please first Login', '', {
-      //   timeOut: 2000,
-      //   positionClass: 'toast-top-right',
-      //   progressBar: true,
-      //   progressAnimation: 'increasing'
-      // });
-
-      Swal.fire({
-        title: 'You are not Logged In',
-        text: "You want to register before survey",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Login'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          document.getElementById('closeModal')?.click()
-          this._router.navigate(['/login'])
-        }
-      })
-
-    } else {
-      var topicObj = {
-        topicId: this.single_Topic._id,
-        productId: id,
-      }
-      localStorage.setItem('topic', JSON.stringify(topicObj));
-      this._router.navigate(['/survey-form/new'])
-      document.getElementById('closeModal')?.click()
+    var voteObj = {
+      topicId: this.single_Topic._id,
+      productId: id,
     }
+
+    this.userSrv.submitVote(voteObj).subscribe((resp: any) => {
+      if (resp.message == 'success') {
+        this.toastSrv.success('Vote Submitted successfully', '', {
+          timeOut: 2000,
+          positionClass: 'toast-top-right',
+          progressBar: true,
+          progressAnimation: 'increasing'
+        });
+        this.getAll();
+        document.getElementById('closeModal')?.click();
+        Swal.fire(
+          'Thnaks',
+          'Your Vote is sumitted successfully',
+          'success'
+        )
+      } else if (resp.message == 'Already_three_time_submitted') {
+        this.toastSrv.error('You Already Submit Three Time Vote By Same Topic.', '', {
+          timeOut: 5000,
+          positionClass: 'toast-top-right',
+          progressBar: true,
+          progressAnimation: 'increasing'
+        });
+      } else {
+        console.log('something went wrong')
+      }
+    })
   }
 
 }

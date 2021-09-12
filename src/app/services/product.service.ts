@@ -23,8 +23,4 @@ export class ProductService {
     return this.http.get(this.baseUrl + '/getById/' + id);
   }
 
-  voteByproduct(data: any) {
-    return this.http.post(environment.baseurl + '/voteproduct/create', data);
-  }
-
 }

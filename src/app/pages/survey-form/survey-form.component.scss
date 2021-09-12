@@ -9,10 +9,11 @@
 
 .map img {
   pointer-events: none;
-  width: 70%;
+  width: 100%;
   border: none;
   height: 410px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
 .contactus-one .dart-headingstyle-one .dart-heading:after {
@@ -23,4 +24,9 @@
   margin: 20px 0px;
   float: right !important;
   background: linear-gradient(to bottom left, #512d6d 0%, #512d6d 100%) !important;
+}
+
+
+#required {
+  color: red !important;
 }

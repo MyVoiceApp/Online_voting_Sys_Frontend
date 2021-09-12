@@ -16,8 +16,11 @@ export class RegistrationComponent implements OnInit {
     name: '',
     email: '',
     password: '',
+    birthdate: '',
     role: 'User'
   }
+    date = new Date;
+
   sliders = [];
   baseUrl = environment.baseurl;
 
@@ -38,6 +41,7 @@ export class RegistrationComponent implements OnInit {
     if (
       this.formObj.name == '' ||
       this.formObj.email == '' ||
+      this.formObj.birthdate == '' ||
       this.formObj.password == ''
     ) {
       this.toastSrv.error('Please fill all fields', '', {

@@ -14,8 +14,8 @@ export class TopicsService {
     return this.http.get(this.baseUrl + '/getAll');
   }
 
-  getAll_withsurvey() {
-    return this.http.get(this.baseUrl + '/getAll_withsurvey');
+  getAll_withvote() {
+    return this.http.get(this.baseUrl + '/getAll_withvote');
   }
 
   getById(id: any) {

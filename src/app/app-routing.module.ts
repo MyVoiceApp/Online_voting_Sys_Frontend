@@ -42,7 +42,7 @@ const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path: 'vote',
+    path: 'votes',
     component: VoteComponent,
   },
   {
