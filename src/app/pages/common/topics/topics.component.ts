@@ -36,7 +36,7 @@ export class TopicsComponent implements OnInit {
   }
 
   getAll() {
-    this.topicSrv.getAll_withvote().subscribe((resp: any) => {
+    this.topicSrv.getSix_withvote().subscribe((resp: any) => {
       this.topics = resp.data;
       this.prodSrv.getAll().subscribe((resp: any) => {
         this.products = resp.data;

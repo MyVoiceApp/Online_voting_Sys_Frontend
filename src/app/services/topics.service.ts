@@ -18,6 +18,10 @@ export class TopicsService {
     return this.http.get(this.baseUrl + '/getAll_withvote');
   }
 
+  getSix_withvote() {
+    return this.http.get(this.baseUrl + '/getSix_withvote');
+  }
+
   getById(id: any) {
     return this.http.get(this.baseUrl + '/getById/' + id);
   }

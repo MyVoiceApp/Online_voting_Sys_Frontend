@@ -19,6 +19,10 @@ export class ProductService {
     return this.http.get(this.baseUrl + '/getAll_withsurvey');
   }
 
+  getSix_withsurvey() {
+    return this.http.get(this.baseUrl + '/getSix_withsurvey');
+  }
+
   getById(id: any) {
     return this.http.get(this.baseUrl + '/getById/' + id);
   }

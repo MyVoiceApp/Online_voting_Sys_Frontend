@@ -24,7 +24,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loader = true;
-    this.prodSrv.getAll_withsurvey().subscribe((resp: any) => {
+    this.prodSrv.getSix_withsurvey().subscribe((resp: any) => {
       this.products = resp.data;
       this.loader = false;
     })

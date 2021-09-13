@@ -24,7 +24,7 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.loader = true;
     this.categorySrv.getAll().subscribe((resp: any) => {
-      this.categories = resp.data;
+      this.categories = resp.data.splice(0, 4);
       this.loader = false;
     })
   }
